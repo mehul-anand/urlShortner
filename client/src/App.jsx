@@ -1,23 +1,35 @@
-import { Button } from "@/components/ui/button";
-import { Toaster } from "@/components/ui/sonner"
-import { toast } from "sonner"
+import Pages from "./pages";
+import { createBrowserRouter, RouterProvider } from "react-router-dom";
 function App() {
-  return (
-    <>
-      <div className="flex flex-col justify-center items-center">
-        <h1 className="text-7xl">Hello</h1>
-        <Toaster />
-        <Button
-          onClick={() => {
-            toast("YAY")
-            ;
-          }}
-        >
-          Click me
-        </Button>
-      </div>
-    </>
-  );
+  const { Auth, Dashboard, Landing, Layout, Redirect ,Link } = Pages;
+  const appRouter = createBrowserRouter([
+    {
+      element: <Layout />,
+      children: [
+        {
+          path: "/",
+          element: <Landing />,
+        },
+        {
+          path: "/dashboard",
+          element: <Dashboard />,
+        },
+        {
+          path: "/auth",
+          element: <Auth />,
+        },
+        {
+          path: "/:id",
+          element: <Redirect />,
+        },
+        {
+          path: "/link/:id",
+          element: <Link />,
+        },
+      ],
+    },
+  ]);
+  return <RouterProvider router={appRouter} />;
 }
 
 export default App;
