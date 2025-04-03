@@ -19,7 +19,7 @@ const Header = () => {
   return (
     <nav className="py-4 px-4 flex justify-between items-center">
       <Link to="/">
-        <img src="/logo.png" alt="logo" className="h-16" />
+        <img src="/logo.png" alt="logo" className="h-16 rounded-full" />
       </Link>
       <div className="pr-12">
         {!user ? (
