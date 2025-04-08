@@ -1,7 +1,9 @@
+import UrlProvider from "./context";
 import Pages from "./pages";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
+import NeedAuth from "./components/NeedAuth";
 function App() {
-  const { Auth, Dashboard, Landing, Layout, Redirect ,Link } = Pages;
+  const { Auth, Dashboard, Landing, Layout, Redirect, Link } = Pages;
   const appRouter = createBrowserRouter([
     {
       element: <Layout />,
@@ -12,7 +14,11 @@ function App() {
         },
         {
           path: "/dashboard",
-          element: <Dashboard />,
+          element: (
+            <NeedAuth>
+              <Dashboard />
+            </NeedAuth>
+          ),
         },
         {
           path: "/auth",
@@ -24,12 +30,20 @@ function App() {
         },
         {
           path: "/link/:id",
-          element: <Link />,
+          element: (
+            <NeedAuth>
+              <Link />
+            </NeedAuth>
+          ),
         },
       ],
     },
   ]);
-  return <RouterProvider router={appRouter} />;
+  return (
+    <UrlProvider>
+      <RouterProvider router={appRouter} />
+    </UrlProvider>
+  );
 }
 
 export default App;
