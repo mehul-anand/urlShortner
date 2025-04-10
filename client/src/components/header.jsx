@@ -47,8 +47,10 @@ const Header = () => {
                 </DropdownMenuLabel>
                 <DropdownMenuSeparator />
                 <DropdownMenuItem>
+                  <Link to={"/dashboard"} className="flex gap-2 items-center justify-center">
                   <LinkIcon className="h-4 w-4" />
-                  <span>My Links</span>
+                    <span>My Links</span>
+                  </Link>
                 </DropdownMenuItem>
                 <DropdownMenuItem className="text-red-400">
                   <LogOut className="h-4 w-4" />
