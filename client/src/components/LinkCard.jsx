@@ -10,14 +10,21 @@ import {
 import React from "react";
 import { Link } from "react-router";
 import { Button } from "./ui/button";
+import useFetchHook from "@/hooks/useFetchHook";
+import { deleteUrl } from "@/db/apiUrls";
+import { BeatLoader } from "react-spinners";
 
 function LinkCard({ url, fetchUrls }) {
+  const { loading: deleteLoader, hookFunc: deleteFunc } = useFetchHook(
+    deleteUrl,
+    url?.id
+  );
   return (
     <div className="flex flex-col md:flex-row gap-5 border p-4 rounded-lg bg-transparent">
       <img
         src={url?.qr}
         alt="qr-code"
-        className="h-32 object-contain ring-4 ring-[#846eee] self-start"
+        className="h-32 object-contain ring-2 rounded-sm p-1 ring-[#846eee] self-start"
       />
       <Link to={`/link/${url?.id}`} className="flex flex-col sm:gap-2 gap-1">
         <div className="flex gap-2 underline items-center">
@@ -58,8 +65,8 @@ function LinkCard({ url, fetchUrls }) {
         <Button>
           <Download />
         </Button>
-        <Button>
-          <Trash2Icon />
+        <Button onClick={() => deleteFunc().then(() => fetchUrls())}>
+          {deleteLoader ? <BeatLoader size={5} color="#846eee" /> : <Trash2Icon />}
         </Button>
       </div>
     </div>
