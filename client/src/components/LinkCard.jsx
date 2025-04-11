@@ -37,8 +37,8 @@ function LinkCard({ url, fetchUrls }) {
           <span>
             <LinkIcon />
           </span>
-          <span className="text-lg text-[#846eee] font-bold hover:underline">
-            https://git.new/{url?.custom_url ? url?.custom_url : url?.short_url}
+          <span className="text-lg gradient-text font-bold hover:underline">
+            https://domain/{url?.custom_url ? url?.custom_url : url?.short_url}
           </span>
         </div>
         <div className="flex gap-2 items-center">
