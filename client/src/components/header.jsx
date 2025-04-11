@@ -24,8 +24,10 @@ const Header = () => {
   return (
     <>
       <nav className="py-4 px-4 flex justify-between items-center">
-        <Link to="/">
-          <img src="/logo.png" alt="logo" className="h-16 rounded-full" />
+        <Link to="/" className="flex items-center justify-center gap-4">
+          {/* <img src="/logo.png" alt="logo" className="h-16 rounded-full" /> */}
+          <LinkIcon className="h-14 w-10 text-white"/>
+          <h2 className="text-2xl gradient-text">Url Shortner</h2>
         </Link>
         <div className="pr-12">
           {!user ? (
