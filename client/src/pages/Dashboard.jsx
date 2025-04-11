@@ -62,7 +62,7 @@ const Dashboard = () => {
         </Card>
       </div>
       <div className="flex justify-between">
-        <h1 className="text-4xl font-extrabold">My Links</h1>
+        <h1 className="text-3xl font-extrabold gradient-text p-2">My Links</h1>
         <Button>Create Link</Button>
       </div>
       <div className="relative">

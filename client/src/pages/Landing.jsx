@@ -17,7 +17,7 @@ const Landing = () => {
   };
   return (
     <div className="flex flex-col items-center px-3">
-      <h2 className="m-10 sm:my-16 text-3xl sm:text-6xl lg:text-7xl text-white text-center font-extrabold">
+      <h2 className="m-10 sm:my-16 text-3xl sm:text-6xl lg:text-7xl gradient-text text-center font-extrabold">
         Best URL shortner out there
       </h2>
       <form
