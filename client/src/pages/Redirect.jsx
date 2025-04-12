@@ -1,9 +1,43 @@
-import React from 'react'
+import { getLongUrl, storeClicks } from "@/db/apiUrls";
+import useFetchHook from "@/hooks/useFetchHook";
+import React, { useEffect } from "react";
+import { useParams } from "react-router";
+import { BarLoader } from "react-spinners";
 
 const Redirect = () => {
-  return (
-    <div>Redirect</div>
-  )
-}
+  const { id } = useParams();
+  const {
+    loading: loadingRedirect,
+    data,
+    hookFunc: redirectFunc,
+  } = useFetchHook(getLongUrl, id);
+  const { loading: loadingStats, hookFunc: storeFunc } = useFetchHook(
+    storeClicks,
+    {
+      id: data?.id,
+      destinationUrl: data?.destination_url,
+    }
+  );
 
-export default Redirect
+  useEffect(() => {
+    redirectFunc();
+  }, []);
+  useEffect(() => {
+    if (!loadingRedirect && data) {
+      storeFunc();
+    }
+  }, [loadingRedirect]);
+
+  if(loadingRedirect || loadingStats){
+    return(
+      <>
+      <BarLoader width={"100%"} color="#846eee" />
+      <br />
+      Redirecting...
+      </>
+    )
+  }
+  return null
+};
+
+export default Redirect;
