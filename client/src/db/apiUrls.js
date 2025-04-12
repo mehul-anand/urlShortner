@@ -73,22 +73,3 @@ export async function getLongUrl(id) {
   }
 }
 
-const parser = new UAParser();
-export async function storeClicks({ id, destinationUrl }) {
-  try {
-    const res = parser.getResult();
-    const device = res.type || "desktop";
-    const ipResp = await fetch("https://ipapi.co/json");
-    const { city, country_name: country } = await ipResp.json();
-    await supabase.from("clicks").insert({
-      url_id: id,
-      country: country,
-      city: city,
-      device: device,
-    });
-
-    window.location.href = destinationUrl
-  } catch (error) {
-    console.error("Cannot record a click",error)
-  }
-}
