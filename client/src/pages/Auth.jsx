@@ -11,7 +11,6 @@ const Auth = () => {
   const navigate = useNavigate()
   const userLink = searchedParams.get("shorten");
   useEffect(()=>{
-    console.log(`isAuth:${isAuthenticated}`)
     if(isAuthenticated && !loading){
       navigate(`/dashboard?${userLink ? `shorten=${userLink}` : ""}`)
     }
