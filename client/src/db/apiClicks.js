@@ -27,9 +27,20 @@ export async function storeClicks({ id, destinationUrl }) {
       device: device,
     });
 
-    window.location.href = destinationUrl
+    window.location.href = destinationUrl;
   } catch (error) {
-    console.error("Cannot record a click",error)
+    console.error("Cannot record a click", error);
   }
 }
 
+export async function getSingleUrlClicks(url_id) {
+  const { data, error } = await supabase
+    .from("clicks")
+    .select("*")
+    .eq("url_id", url_id);
+  if (error) {
+    console.error("Can't find the clicks", error.message);
+    throw new Error("No clicks found");
+  }
+  return data;
+}
