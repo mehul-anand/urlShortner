@@ -73,3 +73,16 @@ export async function getLongUrl(id) {
   }
 }
 
+export async function getSingleUrl({ id, user_id }) {
+  const { data, error } = await supabase
+    .from("urls")
+    .select("*")
+    .eq("id",id)
+    .eq("user_id", user_id)
+    .single();
+  if (error) {
+    console.error("Can't find the url", error.message);
+    throw new Error("Url not found");
+  }
+  return data;
+}
